@@ -7,8 +7,9 @@
  * Author:            WP101®
  * Author URI:        https://wp101.com
  * Text Domain:       wp101
- * Requires at least: 4.1
- * Requires PHP:      5.4
+ * Requires at least: 5.1
+ * Requires PHP:      7.4
+ * License:           GPL-2.0-or-later
  *
  * @package WP101
  */
