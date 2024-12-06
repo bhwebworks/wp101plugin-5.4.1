@@ -131,12 +131,12 @@ class API {
 	}
 
 	/**
-	 * Retrieve an *uncached* response from the /account endpoint.
+	 * Retrieve an *uncached* response from the /portal endpoint.
 	 *
 	 * @return array An array of all account attributes or an empty array if no account was found.
 	 */
 	public function get_account() {
-		$response = $this->send_request( 'GET', '/account' );
+		$response = $this->send_request( 'GET', '/portal' );
 
 		if ( is_wp_error( $response ) ) {
 			return [];
@@ -161,11 +161,10 @@ class API {
 			return $public_key;
 		}
 
-		$response = $this->send_request( 'GET', '/account' );
+		$response = $this->send_request( 'GET', '/portal' );
 
 		if ( is_wp_error( $response ) ) {
 			return $response;
-
 		}
 
 		if ( empty( $response['publicKey'] ) ) {
@@ -241,7 +240,7 @@ class API {
 	 * @return array An array of all available series and topics.
 	 */
 	public function get_playlist() {
-		$response = $this->send_request( 'GET', '/playlist', [], [], MINUTE_IN_SECONDS );
+		$response = $this->send_request( 'GET', '/videos', [], [], MINUTE_IN_SECONDS );
 
 		if ( is_wp_error( $response ) || ! isset( $response['series'] ) ) {
 			if ( is_wp_error( $response ) ) {
@@ -337,7 +336,7 @@ class API {
 	 * @return bool Whether or not the user's account has the given capability.
 	 */
 	public function account_can( $cap ) {
-		$response = $this->send_request( 'GET', '/account', [], [], 12 * HOUR_IN_SECONDS );
+		$response = $this->send_request( 'GET', '/portal', [], [], 12 * HOUR_IN_SECONDS );
 
 		if ( is_wp_error( $response ) ) {
 			return false;
