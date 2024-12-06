@@ -9,7 +9,7 @@
  */
 
 $query_args = array(
-	'host'   => site_url(),
+	'host' => site_url(),
 );
 
 ?>
@@ -34,11 +34,14 @@ $query_args = array(
 					<h2><?php echo esc_html( $series['title'] ); ?></h2>
 					<ol class="wp101-topics-list">
 						<?php foreach ( $series['topics'] as $topic ) : ?>
-
 							<li>
-								<a href="#<?php echo esc_attr( $topic['slug'] ); ?>" data-media-title="<?php echo esc_attr( $topic['title'] ); ?>" data-media-slug="<?php echo esc_attr( $topic['slug'] ); ?>" data-media-src="<?php echo esc_attr( add_query_arg( $query_args, $topic['url'] ) ); ?>"><?php echo esc_html( $topic['title'] ); ?></a>
+								<a href="#<?php echo esc_attr( $topic['slug'] ); ?>"
+								   data-media-title="<?php echo esc_attr( $topic['title'] ); ?>"
+								   data-media-slug="<?php echo esc_attr( $topic['slug'] ); ?>"
+								   data-media-src="<?php echo esc_attr( add_query_arg( $query_args, $topic['url'] ) ); ?>">
+									<?php echo esc_html( $topic['title'] ); ?>
+								</a>
 							</li>
-
 						<?php endforeach; ?>
 					</ol>
 				</div>
@@ -49,13 +52,15 @@ $query_args = array(
 	<?php else : ?>
 
 		<div class="notice notice-error">
-			<p><strong><?php esc_html_e( 'There was a problem retrieving content from WP101plugin.com.', 'wp101' ); ?></strong></p>
+			<p>
+				<strong><?php esc_html_e( 'There was a problem retrieving content from WP101plugin.com.', 'wp101' ); ?></strong>
+			</p>
 			<p>
 				<?php
 				if ( current_user_can( 'manage_options' ) ) {
 					echo wp_kses_post(
 						sprintf(
-							/* Translators: %1$s is the "WP101 Settings" admin page. */
+						/* Translators: %1$s is the "WP101 Settings" admin page. */
 							__( '<a href="%1$s">Please verify your API key</a> and ensure your WP101plugin.com account has access to the desired content.', 'wp101' ),
 							esc_url( menu_page_url( 'wp101-settings', false ) )
 						)
