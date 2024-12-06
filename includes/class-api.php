@@ -58,17 +58,20 @@ class API {
 	/**
 	 * Construct a new instance of the API.
 	 */
-	protected function __construct() {}
+	protected function __construct() {
+	}
 
 	/**
 	 * Prevent the object from being cloned.
 	 */
-	private function __clone() {}
+	private function __clone() {
+	}
 
 	/**
 	 * Prevent the object from being deserialized.
 	 */
-	public function __wakeup() {}
+	public function __wakeup() {
+	}
 
 	/**
 	 * Retrieve the singular instance of the class.
@@ -163,7 +166,9 @@ class API {
 		if ( is_wp_error( $response ) ) {
 			return $response;
 
-		} elseif ( ! isset( $response['publicKey'] ) || empty( $response['publicKey'] ) ) {
+		}
+
+		if ( empty( $response['publicKey'] ) ) {
 			return new WP_Error( 'missing-public-key', __( 'Unable to retrieve a valid public key from WP101.' ) );
 		}
 
@@ -262,7 +267,7 @@ class API {
 					$series['topics'],
 					function ( $topic ) use ( $excluded ) {
 						return ! in_array( $topic['slug'], $excluded, true )
-							&& ! in_array( $topic['legacy_id'], $excluded, true );
+						       && ! in_array( $topic['legacy_id'], $excluded, true );
 					}
 				);
 			}
@@ -275,6 +280,7 @@ class API {
 	 * Retrieve a single series by its slug.
 	 *
 	 * @param string $series The series slug.
+	 *
 	 * @return array|bool The series array for the given slug, or false if the given series was not
 	 *                    found in the API-provided playlist.
 	 */
@@ -295,6 +301,7 @@ class API {
 	 * Retrieve a single topic by its slug.
 	 *
 	 * @param string $topic The topic slug.
+	 *
 	 * @return array|bool The topic array for the given slug, or false if the given topic was not
 	 *                    found in the API-provided playlist.
 	 */
@@ -362,9 +369,10 @@ class API {
 					 * Pass along custom topics to the key exchange, enabling these to be created
 					 * within WP101 automatically.
 					 *
+					 * @param array $custom_topics An array of custom WP101 topics.
+					 *
 					 * @deprecated 5.0.0
 					 *
-					 * @param array $custom_topics An array of custom WP101 topics.
 					 */
 					'customTopics' => apply_filters( 'wp101_get_custom_help_topics', get_option( 'wp101_custom_topics' ) ),
 
@@ -374,9 +382,10 @@ class API {
 					 * This filter was available in WP101 4.x and below, and is only being applied so
 					 * that hidden topics are preserved during the API key exchange process.
 					 *
+					 * @param array $topic_ids An array of WP101 topics that should be hidden.
+					 *
 					 * @deprecated 5.0.0
 					 *
-					 * @param array $topic_ids An array of WP101 topics that should be hidden.
 					 */
 					'hiddenTopics' => apply_filters( 'wp101_get_hidden_topics', get_option( 'wp101_hidden_topics' ) ),
 				],
@@ -414,7 +423,8 @@ class API {
 	 * Build an API request URI.
 	 *
 	 * @param string $path Optional. The API endpoint. Default is '/'.
-	 * @param array  $args Optional. Query string arguments for the URI. Default is empty.
+	 * @param array $args Optional. Query string arguments for the URI. Default is empty.
+	 *
 	 * @return string The URI for the API request.
 	 */
 	protected function build_uri( $path = '/', array $args = [] ) {
@@ -432,11 +442,11 @@ class API {
 	 * Send a request to the WP101 API.
 	 *
 	 * @param string $method The HTTP method.
-	 * @param string $path   The API request path.
-	 * @param array  $query  Optional. Query string arguments. Default is empty.
-	 * @param array  $args   Optional. Additional HTTP arguments. For a full list of options,
+	 * @param string $path The API request path.
+	 * @param array $query Optional. Query string arguments. Default is empty.
+	 * @param array $args Optional. Additional HTTP arguments. For a full list of options,
 	 *                       see wp_remote_request().
-	 * @param int    $cache  Optional. The number of seconds for which the result should be cached.
+	 * @param int $cache Optional. The number of seconds for which the result should be cached.
 	 *                       Default is 0 seconds (no caching).
 	 *
 	 * @return array|WP_Error The HTTP response body or a WP_Error object if something went wrong.
@@ -458,8 +468,8 @@ class API {
 				'timeout'    => 30,
 				'user-agent' => self::USER_AGENT,
 				'headers'    => [
-					'Authorization'    => 'Bearer ' . $api_key,
-					'Method'           => $method,
+					'Authorization' => 'Bearer ' . $api_key,
+					'Method'        => $method,
 					'X-User-Domain' => site_url(),
 				],
 			]
@@ -517,8 +527,9 @@ class API {
 	/**
 	 * Given a URI and arguments, generate a cache key for use with WP101's internal caching system.
 	 *
-	 * @param string $uri  The API URI, with any query string arguments.
-	 * @param array  $args Optional. An array of HTTP arguments used in the request. Default is empty.
+	 * @param string $uri The API URI, with any query string arguments.
+	 * @param array $args Optional. An array of HTTP arguments used in the request. Default is empty.
+	 *
 	 * @return string A cache key.
 	 */
 	public static function generate_cache_key( $uri, $args = [] ) {
