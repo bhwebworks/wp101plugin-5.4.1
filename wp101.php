@@ -8,11 +8,24 @@
  * Author URI:        https://wp101.com
  * Text Domain:       wp101
  * Requires at least: 5.1
- * Requires PHP:      7.4
+ * Requires PHP:      5.4
  * License:           GPL-2.0-or-later
  *
  * @package WP101
  */
+
+// if PHP is lower than 7.4 then exit
+//if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
+//	add_action( 'admin_notices', function() {
+//		?>
+<!--		<div class="notice notice-error">-->
+<!--			<p>--><?php //esc_html_e( 'WP101 Video Tutorial Plugin requires PHP 7.4 or higher. Please upgrade your PHP version.', 'wp101' ); ?><!--</p>-->
+<!--		</div>-->
+<!--		--><?php
+//	} );
+//	return;
+//}
+
 
 define( 'WP101_INC', __DIR__ . '/includes' );
 define( 'WP101_VIEWS', __DIR__ . '/views' );
@@ -34,9 +47,9 @@ require_once WP101_INC . '/uninstall.php';
  *
  * @link https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices#Disable_Nag_Notices
  */
-if ( ! defined( 'DISABLE_NAG_NOTICES' ) || ! DISABLE_NAG_NOTICES ) {
-    require_once WP101_INC . '/addons.php';
-}
+//if ( ! defined( 'DISABLE_NAG_NOTICES' ) || ! DISABLE_NAG_NOTICES ) {
+//    require_once WP101_INC . '/addons.php';
+//}
 
 /**
  * When the plugin is activated, check to see if it needs migrating from earlier versions.
