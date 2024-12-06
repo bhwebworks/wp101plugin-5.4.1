@@ -209,7 +209,6 @@ function render_addons_page() {
 function render_listings_page() {
 	$api        = TemplateTags\api();
 	$playlist   = $api->get_playlist();
-	$public_key = $api->get_public_api_key();
 
 	// Filter out irrelevant series.
 	$playlist['series'] = array_filter( $playlist['series'], __NAMESPACE__ . '\is_relevant_series' );
