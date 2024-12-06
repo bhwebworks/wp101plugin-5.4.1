@@ -3,7 +3,7 @@
  * Plugin Name:       WP101 Video Tutorial Plugin
  * Plugin URI:        https://wp101plugin.com
  * Description:       A complete set of video tutorials for WordPress, WooCommerce, and more... delivered directly in the dashboard.
- * Version:           5.4.0
+ * Version:           5.4.1
  * Author:            WP101®
  * Author URI:        https://wp101.com
  * Text Domain:       wp101
@@ -17,7 +17,7 @@
 
 define( 'WP101_INC', __DIR__ . '/includes' );
 define( 'WP101_VIEWS', __DIR__ . '/views' );
-define( 'WP101_URL', plugins_url( null, __FILE__ ) );
+define( 'WP101_URL', plugins_url( '', __FILE__ ) );
 define( 'WP101_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WP101_VERSION', '5.4.0' );
 

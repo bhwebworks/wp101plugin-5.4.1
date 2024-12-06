@@ -4,7 +4,7 @@ Tags: wp101, tutorials, video, help, learn
 Requires at least: 5.1
 Requires PHP: 7.4
 Tested up to: 6.7.1
-Stable tag: 5.4.0
+Stable tag: 5.4.1
 License: GPLv2 or later
 
 Professional video tutorials for WordPress, WooCommerce, Elementor, and more, right in the dashboard of your WordPress site. Perfect for beginners.
@@ -77,6 +77,9 @@ Yes! Simply define the `WP101_API_KEY` constant within your `wp-config` file:
 == Changelog ==
 
 For a complete list of changes, please see [the plugin's GitHub repository](https://github.com/leftlane/wp101plugin/blob/master/CHANGELOG.md).
+
+= 5.4.1 =
+* Fix: Deprecated notice in PHP 8.1+
 
 = 5.4.0 =
 * Tested and verified for WordPress 6.7.1
