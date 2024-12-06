@@ -460,7 +460,7 @@ class API {
 				'headers'    => [
 					'Authorization'    => 'Bearer ' . $api_key,
 					'Method'           => $method,
-					'X-Forwarded-Host' => site_url(),
+					'X-User-Domain' => site_url(),
 				],
 			]
 		);
