@@ -14,18 +14,6 @@
  * @package WP101
  */
 
-// if PHP is lower than 7.4 then exit
-//if ( version_compare( PHP_VERSION, '7.4', '<' ) ) {
-//	add_action( 'admin_notices', function() {
-//		?>
-<!--		<div class="notice notice-error">-->
-<!--			<p>--><?php //esc_html_e( 'WP101 Video Tutorial Plugin requires PHP 7.4 or higher. Please upgrade your PHP version.', 'wp101' ); ?><!--</p>-->
-<!--		</div>-->
-<!--		--><?php
-//	} );
-//	return;
-//}
-
 
 define( 'WP101_INC', __DIR__ . '/includes' );
 define( 'WP101_VIEWS', __DIR__ . '/views' );
