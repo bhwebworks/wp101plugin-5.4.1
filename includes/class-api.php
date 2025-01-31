@@ -265,7 +265,7 @@ class API {
 				$response['series'][ $key ]['topics'] = array_filter(
 					$series['topics'],
 					function ( $topic ) use ( $excluded ) {
-						if ( isset( $topic['slug'] ) {
+						if ( isset( $topic['slug'] ) ) {
 							return ! in_array( $topic['slug'], $excluded, true );
 						} else {
 							return ! in_array( $topic['legacy_id'], $excluded, true );
